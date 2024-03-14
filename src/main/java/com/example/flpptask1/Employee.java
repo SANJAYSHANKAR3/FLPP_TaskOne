@@ -30,7 +30,8 @@ public class Employee {
         this.age = age;
     }
 
-    public Employee(String firstName,String lastName, Integer age) {
+    public Employee(Integer id, String firstName,String lastName, Integer age) {
+        this.id = id;
         this.firstName = firstName;
         this.middleName = "";
         this.lastName = lastName;
