@@ -12,11 +12,13 @@ import java.util.List;
 public class EmployeeController {
     final
     EmployeeService employeeService;
-    private final Employee employee;
+    private Employee employee;
+
 
     public EmployeeController(EmployeeService employeeService, Employee employee) {
         this.employeeService = employeeService;
         this.employee = new Employee(101, "Ram", "Mathan", "Kumar", 23);
+
 
     }
 
@@ -26,8 +28,15 @@ public class EmployeeController {
 
     }
 
-    @GetMapping("employees")
+    @GetMapping("employee")
    Employee getEmployee(){
+
         return this.employee;
     }
+
+    @GetMapping("employees")
+    List<Employee> getAllEmployees(){
+        return this.employeeService.getAllEmplyess();
+    }
+
 }
