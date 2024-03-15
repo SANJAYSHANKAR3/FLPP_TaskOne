@@ -1,7 +1,9 @@
-package com.example.flpptask1;
+package com.example.flpptask1.service;
 
+import com.example.flpptask1.model.Employee;
+import com.example.flpptask1.repository.EmployeeRepository;
+import com.example.flpptask1.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +22,8 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
     @Override
     public Employee registerEmployee(Employee employee) {
-
         log.info(employee.toString());
         this.employeeRepository.save(employee);
-
         return employee;
     }
 

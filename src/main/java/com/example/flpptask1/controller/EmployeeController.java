@@ -1,10 +1,13 @@
-package com.example.flpptask1;
+package com.example.flpptask1.controller;
 
+import com.example.flpptask1.service.EmployeeService;
+import com.example.flpptask1.model.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -17,7 +20,7 @@ public class EmployeeController {
 
     public EmployeeController(EmployeeService employeeService, Employee employee) {
         this.employeeService = employeeService;
-        this.employee = new Employee(101, "Ram", "Mathan", "Kumar", 23);
+        this.employee = new Employee(101, "Ram", "Mathan", "Kumar", LocalDate.now(), 23);
 
 
     }
@@ -30,7 +33,6 @@ public class EmployeeController {
 
     @GetMapping("employee")
    Employee getEmployee(){
-
         return this.employee;
     }
 
