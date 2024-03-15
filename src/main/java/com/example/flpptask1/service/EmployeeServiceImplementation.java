@@ -1,5 +1,6 @@
 package com.example.flpptask1.service;
 
+import com.example.flpptask1.exceptions.NoEmployeesFoundException;
 import com.example.flpptask1.model.Employee;
 import com.example.flpptask1.repository.EmployeeRepository;
 import com.example.flpptask1.service.EmployeeService;
@@ -13,7 +14,7 @@ import java.util.List;
 public class EmployeeServiceImplementation implements EmployeeService {
 
 
-    private final EmployeeRepository employeeRepository;
+    private EmployeeRepository employeeRepository;
 
     public EmployeeServiceImplementation(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
@@ -28,7 +29,11 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getAllEmplyess() {
-        return employeeRepository.findAll();
+    public List<Employee> getAllEmployees() throws NoEmployeesFoundException {
+
+        List<Employee> employees = this.employeeRepository.findAll();
+        if(employees.isEmpty())
+            throw new NoEmployeesFoundException("No Employees exist in the List");
+        return employees;
     }
 }

@@ -1,7 +1,9 @@
 package com.example.flpptask1.controller;
 
+import com.example.flpptask1.exceptions.NoEmployeesFoundException;
 import com.example.flpptask1.service.EmployeeService;
 import com.example.flpptask1.model.Employee;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +14,7 @@ import java.util.List;
 
 
 @RestController
+@Slf4j
 public class EmployeeController {
     final
     EmployeeService employeeService;
@@ -26,19 +29,23 @@ public class EmployeeController {
     }
 
     @PostMapping("employee")
-    Employee addEmployee(@RequestBody Employee employee){
+    Employee addEmployee(@RequestBody Employee employee) {
         return this.employeeService.registerEmployee(employee);
 
     }
 
     @GetMapping("employee")
-   Employee getEmployee(){
+    Employee getEmployee() {
         return this.employee;
     }
 
     @GetMapping("employees")
-    List<Employee> getAllEmployees(){
-        return this.employeeService.getAllEmplyess();
-    }
+    List<Employee> getAllEmployees() throws NoEmployeesFoundException {
 
+//
+        return this.employeeService.getAllEmployees();
+    }
 }
+
+
+
