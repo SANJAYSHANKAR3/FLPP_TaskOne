@@ -4,12 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
-import org.hibernate.id.factory.internal.AutoGenerationTypeStrategy;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -23,17 +19,30 @@ import java.time.LocalDate;
 @Entity
 @Component
 public class Employee {
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     Integer id;
-    @NotNull @NotBlank @Size(min = 3, max = 15)
+
+    @NotNull
+    @NotBlank
+    @Size(min = 3, max = 15)
     String firstName;
+
+    @Size(max = 15)
     String middleName;
-    @NotNull @NotBlank @Size(min = 3, max = 15)
+
+    @NotNull
+    @NotBlank
+    @Size(min = 3, max = 15)
     String lastName;
+
+    @Past(message = "Registration date must be in the past")
     LocalDate registrationDate;
 
-    @Range(min = 20, max = 60)
+
+    @Min(value = 20, message = "Age must be at least 20")
+    @Max(value = 60, message = "Age must not exceed 60")
     Integer age;
 
 }
