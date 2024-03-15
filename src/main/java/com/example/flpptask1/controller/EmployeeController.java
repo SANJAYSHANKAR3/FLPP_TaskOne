@@ -1,7 +1,8 @@
 package com.example.flpptask1.controller;
 
-import com.example.flpptask1.service.EmployeeService;
+import com.example.flpptask1.dto.EmployeeRequest;
 import com.example.flpptask1.model.Employee;
+import com.example.flpptask1.service.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,25 +16,23 @@ import java.util.List;
 public class EmployeeController {
     final
     EmployeeService employeeService;
-    private Employee employee;
 
+    EmployeeRequest employeeRequest;
 
-    public EmployeeController(EmployeeService employeeService, Employee employee) {
+    public EmployeeController(EmployeeService employeeService, EmployeeRequest employeeRequest) {
         this.employeeService = employeeService;
-        this.employee = new Employee(101, "Ram", "Mathan", "Kumar", LocalDate.now(), 23);
-
-
+        this.employeeRequest = new EmployeeRequest(101, "Ram", "Mathan", "Kumar", 23);
     }
 
     @PostMapping("employee")
-    Employee addEmployee(@RequestBody Employee employee){
-        return this.employeeService.registerEmployee(employee);
+    Employee addEmployee(@RequestBody EmployeeRequest employeeRequest){
+        return this.employeeService.registerEmployee(employeeRequest);
 
     }
 
     @GetMapping("employee")
-   Employee getEmployee(){
-        return this.employee;
+   EmployeeRequest getEmployeeRequest(){
+        return this.employeeRequest;
     }
 
     @GetMapping("employees")

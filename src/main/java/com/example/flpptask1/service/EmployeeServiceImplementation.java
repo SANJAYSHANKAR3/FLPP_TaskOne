@@ -1,5 +1,6 @@
 package com.example.flpptask1.service;
 
+import com.example.flpptask1.dto.EmployeeRequest;
 import com.example.flpptask1.model.Employee;
 import com.example.flpptask1.repository.EmployeeRepository;
 import com.example.flpptask1.service.EmployeeService;
@@ -21,8 +22,14 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
 
     @Override
-    public Employee registerEmployee(Employee employee) {
-        log.info(employee.toString());
+    public Employee registerEmployee(EmployeeRequest employeeRequest) {
+        log.info(employeeRequest.toString());
+        Employee employee = new Employee();
+        employee.setId(employeeRequest.getId());
+        employee.setFirstName(employeeRequest.getFirstName());
+        employee.setMiddleName(employeeRequest.getMiddleName());
+        employee.setLastName(employeeRequest.getLastName());
+        employee.setAge(employeeRequest.getAge());
         this.employeeRepository.save(employee);
         return employee;
     }
